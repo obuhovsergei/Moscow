@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Задание</title>
+
+	<link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
+	<link href="jquery-ui.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="styles.css" />
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="scrolloverflow.js"></script>
+	<script type="text/javascript" src="jquery.fullPage.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//Инициализация скрипта полного экрана страницы
+			$('#fullpage').fullpage({
+				verticalCentered: false,
+				navigation: true,
+				navigationPosition: 'right', // Выбираем расположение навигационных кнопок
+				afterSlideLoad: function (anchorLink, index, slideAnchor, slideIndex) {
+					var index = slideIndex; 
+					//Инициализируем индекс подслайда и перезадаём значение скрола под положение слайдера
+					if(index == 0) $( "#slider" ).slider( "value", 1);
+					else if(index == 1) $( "#slider" ).slider( "value", 50);
+					else if(index == 2) $( "#slider" ).slider( "value", 99);
+					else $( "#slider" ).slider( "value", 1);
+	            },
+				scrollOverflow: true // Включаем скроллинг для планшета
+			});	
+
+			//Инициализация скроллбара смены слайдов
+			$( function() {
+			    $( "#slider" ).slider({
+			      range: "min", 
+			      value: 1,
+			      min: 0,
+			      max: 100,			      
+			      stop: function( event, ui ) {
+			      	//Получаем значение скроллбара и задаём нужное положение слайдера
+			      	var value = ui.value;
+			      	if(value > 0 && value <= 25){
+			      		$( "#slider" ).slider( "value", 1);
+			      		$.fn.fullpage.moveTo(3, 0);
+			      	}
+			      	else if(value > 25 && value <= 75){
+			      		$( "#slider" ).slider( "value", 50);
+			      		$.fn.fullpage.moveTo(3, 1);
+			      	}
+			      	else if(value > 75 && value <= 100){
+			      		$( "#slider" ).slider( "value", 99);
+			      		$.fn.fullpage.moveTo(3, 2);
+			      	}
+			      	else {
+			      		$( "#slider" ).slider( "value", 1);
+			      		$.fn.fullpage.moveTo(3, 0);
+			      	}	
+			      }
+			    });
+			});	
+		});		
+	</script>
+
+</head>
+<body>
+<div id="fullpage">
+<!--      Первая секция       --> 
+	<div class="section " id="section0"><h1>Всегда ли цели терапии СД2 на поверхности?</h1>
+		<div class="rounds rock1">
+			 <div class="ringbase ring1"></div>
+			 <div class="ringbase ring2"></div>
+			 <div class="ringbase ring3"></div>
+			 <div class="pulse"></div>
+			 <p>Цель по HbA1c</p>
+		</div>		
+		<div class="rounds rock2">
+			 <div class="ringbase ring1"></div>
+			 <div class="ringbase ring2"></div>
+			 <div class="ringbase ring3"></div>
+			 <div class="pulse"></div>
+			 <p>Гипогликимия</p>
+		</div>		
+		<div class="rounds rock3">
+			 <div class="ringbase ring1"></div>
+			 <div class="ringbase ring2"></div>
+			 <div class="ringbase ring3"></div>
+			 <div class="pulse"></div>
+			 <p>Осложнения СД</p>
+		</div>
+		<div class="rounds rock4">
+			 <div class="ringbase ring1"></div>
+			 <div class="ringbase ring2"></div>
+			 <div class="ringbase ring3"></div>
+			 <div class="pulse"></div>
+			 <p>СС риски</p>
+		</div>
+	</div>	
+
+<!--      Вторая секция       --> 	
+	<div class="section" id="section1">
+		<h2>Основа терапии - <br />патогенез СД2</h2>
+		<div class="ice1"><img src="imgs/ice1.png"></div>
+		<div class="ice2"><img src="imgs/ice2.png"></div>
+		<div class="ice3"><img src="imgs/ice3.png"></div>
+		<div class="ice4"><img src="imgs/ice4.png"></div>
+	</div>
+<!--      Третья секция       --> 	
+	<div class="section" id="section2">
+	<!--      Слайд первый       --> 
+		<div class="slide" id="slide1">
+			<h1>Звенья патогенеза СД2</h1>
+			<p class="text-center"><img src="imgs/slide3-1.png"></p>
+			<div class="ice1-1"><img src="imgs/ice5.png"></div>
+			<div class="ice1-2"><img src="imgs/ice2.png"></div>
+			<div class="ice1-3"><img src="imgs/ice3.png"></div>			
+		</div>
+	<!--      Слайд второй       --> 	
+		<div class="slide" id="slide2">
+			<h1>Смертельный октет</h1>
+			<p class="text-center"><img src="imgs/slide3-2.png"></p>
+			<div class="ice2-1"><img src="imgs/ice1.png"></div>
+			<div class="ice2-2"><img src="imgs/ice2.png"></div>
+			<div class="ice2-3"><img src="imgs/ice3.png"></div>
+		</div>
+	<!--      Слайд третий       --> 		
+		<div class="slide" id="slide3">
+			<h1>Звенья патогенеза СД2</h1>
+			<p class="text-center"><img src="imgs/slide3-3.png"></p>
+			<div class="ice3-1"><img src="imgs/ice5.png"></div>
+			<div class="ice3-2"><img src="imgs/ice2.png"></div>
+			<div class="ice3-3"><img src="imgs/ice3.png"></div>
+		</div>
+	<!--      Скроллбар       --> 		
+		<div id="slider"></div>
+		<div class="info_slide">
+				<p>1988</p>
+				<p>2009</p>
+				<p>2016</p>
+		</div>
+	</div>	
+</div>
+</body>
+</html>
